@@ -1,0 +1,1 @@
+enum HelperMessageType { user, bot }

@@ -1,0 +1,1 @@
+export '/app/middlewares/auth_middleware.dart';
