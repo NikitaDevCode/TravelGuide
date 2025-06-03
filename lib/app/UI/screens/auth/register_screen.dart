@@ -149,6 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 _loadingStateController.changeLoadingState();
                 final apiResponse = await ApiAuth().registerUser(_emailController.text, _loginController.text, _passwordController.text);
                 if (apiResponse.success) {
+                  DialogService().showSnackBarMessage('Информация', 'Регистрация прошла успешно');
                   NavigationService().navigateDeleteRouteScreen(RouteNames.anketaScreenRoute, arguments: apiResponse.data);
                 }
                 _loadingStateController.changeLoadingState();

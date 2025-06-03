@@ -94,7 +94,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     onPressed: _loadingStateController.isLoadingState ? null : () async {
                       if (_keyFormState.currentState!.validate()) {
                         _loadingStateController.changeLoadingState();
-                        await ApiAccount().changePassword(_oldPasswordController.text, _passwordController.text);
+                        final apiResponse = await ApiAccount().changePassword(_passwordController.text, _passwordController.text);
+                        if (apiResponse.success) {
+                          DialogService().showSnackBarMessage('Информация', 'Пароль успешно изменён');
+                          
+                        }
                         _loadingStateController.changeLoadingState();
                       }
                     },

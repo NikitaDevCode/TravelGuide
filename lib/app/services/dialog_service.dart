@@ -1,4 +1,3 @@
-
 import '/libraries/system_packages.dart';
 import '/libraries/custom_packages.dart';
 
@@ -15,11 +14,15 @@ class DialogService {
     );
   }
   void showSnackBarMessage(String title, String message, ) {
+    final theme = Get.theme;
+    final isDark = theme.brightness == Brightness.dark;
     Get.snackbar(
       duration: const Duration(seconds: 2),
       isDismissible: false,
       title, 
-      message
+      message,
+      backgroundColor: isDark ? const Color.fromARGB(255, 60, 60, 60) : const Color.fromARGB(255, 235, 235, 235),
+      colorText: theme.textTheme.bodyMedium!.color
     );
   }
 }

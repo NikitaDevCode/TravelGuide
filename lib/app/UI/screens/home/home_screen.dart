@@ -1,3 +1,4 @@
+import '/libraries/controllers.dart';
 import '/libraries/services.dart';
 import '/libraries/configs.dart';
 import '/app/routes/route_names.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _notificationController = Get.find<NotificationController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,11 +57,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     NavigationService().navigateToRouteScreen(RouteNames.notificationScreenRoute);
                   },
-                  child: const Icon(
-                    Icons.notifications,
-                    color: Colors.white,
-                    size: 32
-                  ),
+                  child: Obx(() {
+                    return Badge.count(
+                      count: _notificationController.notifications.length,
+                      child: const Icon(
+                        Icons.notifications,
+                        color: Colors.white,
+                        size: 32
+                      )
+                    );
+                  })
                 )
               ]
             ),
@@ -93,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 10),
             _buildQuickAccessItem(
-              title:  'Мероприятия музея',
+              title:  'События в музее',
               leading : SvgPicture.asset('assets/icons/SVG/events.svg', width: 25, height: 25),
               onTap: () {
                 NavigationService().navigateToRouteScreen(RouteNames.eventsMuseumScreenRoute);

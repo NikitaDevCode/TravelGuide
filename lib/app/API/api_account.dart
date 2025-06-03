@@ -1,3 +1,4 @@
+import '/libraries/models.dart';
 import '/libraries/database.dart';
 import '/libraries/enums.dart';
 import '/libraries/controllers.dart';
@@ -26,8 +27,18 @@ class ApiAccount extends BaseApi {
         );
       });
       if (response.statusCode == 200) {
-        DialogService().showSnackBarMessage('Информация', jsonDecode(response.body));
-        return ApiResponse(success: true);
+        final userResponse = await jwtHandler.authenticatedJwtRequest(() async {
+          return await httpMethod(
+            ApiMethod.get,
+            'api/account/get-user-data',
+            headers: await jwtHandler.getJwtAuthHeader()
+          );
+        });
+        if (userResponse.statusCode == 200) {
+          final user = User.fromMap(jsonDecode(userResponse.body));
+          await UserRepository().save(user);
+          return ApiResponse(success: true);
+        }
       }
     }
     on ApiException catch (e) {
@@ -52,8 +63,18 @@ class ApiAccount extends BaseApi {
         );
       });
       if (response.statusCode == 200) {
-        DialogService().showSnackBarMessage('Информация', jsonDecode(response.body));
-        return ApiResponse(success: true);
+        final userResponse = await jwtHandler.authenticatedJwtRequest(() async {
+          return await httpMethod(
+            ApiMethod.get,
+            'api/account/get-user-data',
+            headers: await jwtHandler.getJwtAuthHeader()
+          );
+        });
+        if (userResponse.statusCode == 200) {
+          final user = User.fromMap(jsonDecode(userResponse.body));
+          await UserRepository().save(user);
+          return ApiResponse(success: true);
+        }
       }
     }
     on ApiException catch (e) {
@@ -78,7 +99,6 @@ class ApiAccount extends BaseApi {
         );
       });
       if (response.statusCode == 200) {
-        DialogService().showSnackBarMessage('Информация', jsonDecode(response.body));
         return ApiResponse(success: true);
       }
     }

@@ -72,7 +72,7 @@ class ApiSecurity extends BaseApi {
         Get.find<AuthStateController>().changeAuthState();
         await SharedPrefService().saveBoolData('isAuthorized', false);
         DialogService().showSnackBarMessage('Информация', jsonDecode(response.body));
-        Get.offAllNamed(RouteNames.loginScreenRoute);
+        NavigationService().navigateDeleteRouteScreen(RouteNames.loginScreenRoute);
         return ApiResponse(success: true);
       }
     }

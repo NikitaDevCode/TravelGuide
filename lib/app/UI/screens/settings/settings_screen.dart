@@ -14,7 +14,6 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final _userDataController = Get.find<UserDataController>();
-  final _setupController = Get.find<SetupController>();
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -56,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               subtitle: const Text('Настройки аккаунта'),
               trailing: const Icon(Icons.arrow_right, size: 30),
               onTap: () {
-                NavigationService().navigateToScreen(() => const AccountSettingsScreen(), arguments: _setupController.user);
+                NavigationService().navigateToScreen(() => const AccountSettingsScreen());
               }
             )
           ),

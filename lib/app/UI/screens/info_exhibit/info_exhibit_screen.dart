@@ -1,3 +1,4 @@
+import '/libraries/services.dart';
 import '/libraries/controllers.dart';
 import '/libraries/custom_packages.dart';
 import '/libraries/configs.dart';
@@ -61,6 +62,7 @@ class _InfoExhibitScreenState extends State<InfoExhibitScreen> {
                       leading: const Icon(Icons.favorite, color: Colors.red, size: 30),
                       onTap: () {
                         _favoriteController.addExhibit(exhibit);
+                        DialogService().showSnackBarMessage('Информация', 'Экспонат добавлен в избранное');
                       }
                     )
                   ),

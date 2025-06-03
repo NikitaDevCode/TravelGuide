@@ -131,6 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 _loadingStateController.changeLoadingState();
                 final apiResponse = await ApiAuth().loginUser(_loginOrEmailController.text, _passwordController.text);
                 if (apiResponse.success) {
+                  DialogService().showSnackBarMessage('Информация', 'Авторизация прошла успешно');
                   NavigationService().navigateDeleteRouteScreen(RouteNames.mainScreenRoute);
                 }
                 _loadingStateController.changeLoadingState();

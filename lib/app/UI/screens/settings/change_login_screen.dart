@@ -88,7 +88,11 @@ class _ChangeLoginScreenState extends State<ChangeLoginScreen> {
                     onPressed: _loadingStateController.isLoadingState ? null : () async {
                       if (_keyFormState.currentState!.validate()) {
                         _loadingStateController.changeLoadingState();
-                        await ApiAccount().changeLogin(_loginController.text, _passwordController.text);
+                        final apiResponse = await ApiAccount().changeLogin(_loginController.text, _passwordController.text);
+                        if (apiResponse.success) {
+                          DialogService().showSnackBarMessage('Информация', 'Логин успешно изменён');
+                          
+                        }
                         _loadingStateController.changeLoadingState();
                       }
                     },

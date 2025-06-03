@@ -1,5 +1,4 @@
-import 'package:travel_guide/app/services/dialog_service.dart';
-
+import '/libraries/services.dart';
 import '/libraries/classes.dart';
 import '/libraries/system_packages.dart';
 import '/libraries/enums.dart';
@@ -45,21 +44,25 @@ class UpdateController extends GetxController {
   Version? _parseVersion(String version) {
     try {
       return Version.parse(version);
-    } catch (e) {
-      debugPrint('Ошибка парсинга версии: $version');
+    } 
+    catch (_) {
+      DialogService().showSnackBarMessage('Информация', 'Ошибка парсинга версии');
       return null;
     }
   }
   Future<String> _getLatestVersionFromGitHub() async {
-    final response = await http.get(
-      Uri.parse('https://api.github.com/repos/NikitaDevCode/TravelGuide/releases/latest'), 
-    );
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data['tag_name'] as String;
-    } 
-    else {
-      throw Exception('Ошибка получения версии');
+    try {
+      final response = await http.get(
+        Uri.parse('https://api.github.com/repos/NikitaDevCode/TravelGuide/releases/latest'), 
+      );
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return data['tag_name'] as String;
+      }
     }
+    catch (_) {
+      DialogService().showSnackBarMessage('Информация', 'Ошибка получения версии');
+    }
+    return '';
   }
 }

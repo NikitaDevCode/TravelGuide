@@ -11,6 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppInitialize.intializeNotifications();
   await AppInitialize.intializeSharedPref();
+  await AppInitialize.intializeServices();
   AppInitialize.initializeControllers();
   /*
   # -------------------------
@@ -50,10 +51,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  Widget _buildNavigationBar(CustomPageController controller) {
+  Widget _buildNavigationBar(CustomPageController customPageController) {
     return NavigationBar(
-      selectedIndex: controller.currentPageIndex,
-      onDestinationSelected: (i) => controller.changePage(i),
+      selectedIndex: customPageController.currentPageIndex,
+      onDestinationSelected: (i) => customPageController.changePage(i),
       destinations: const [
         NavigationDestination(icon: Icon(Icons.home), label: 'Главная'),
         NavigationDestination(icon: Icon(Icons.storage), label: 'Экспозиции музея'),

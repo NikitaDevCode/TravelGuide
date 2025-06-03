@@ -1,7 +1,7 @@
+import '/libraries/controllers.dart';
 import '/libraries/screens.dart';
 import '/libraries/services.dart';
 import '/libraries/configs.dart';
-import '/libraries/models.dart';
 import '/libraries/custom_packages.dart';
 import '/libraries/system_packages.dart';
 
@@ -13,7 +13,12 @@ class AccountSettingsScreen extends StatefulWidget {
 }
 
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
-  final _user = Get.arguments as User;
+  final _setupController = Get.find<SetupController>();
+  @override
+  void initState() {
+    super.initState();
+    _setupController.getUser();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,13 +38,16 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
               child: _buildContainer(
                 children: [
                   const Text('Почта:'),
-                  Text(_user.email, style: Theme.of(context).textTheme.bodyMedium),
+                  Obx(() {
+                    return Text(_setupController.user!.email, style: Theme.of(context).textTheme.bodyMedium);
+                  }),
                   const SizedBox(height: 10),
                   const Divider(height: 1),
                   const SizedBox(height: 10),
-                  
                   const Text('Логин:'),
-                  Text(_user.login, style: Theme.of(context).textTheme.bodyMedium),
+                  Obx(() {
+                    return Text(_setupController.user!.login, style: Theme.of(context).textTheme.bodyMedium);
+                  })
                 ]
               )
             ),

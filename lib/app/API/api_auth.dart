@@ -46,7 +46,6 @@ class ApiAuth extends BaseApi {
         await UserRepository().save(user);
         Get.find<AuthStateController>().changeAuthState();
         await SharedPrefService().saveBoolData('isAuthorized', true);
-        DialogService().showSnackBarMessage('Информация', 'Авторизация прошла успешно');
         return ApiResponse(success: true);
       }
     }
@@ -94,7 +93,6 @@ class ApiAuth extends BaseApi {
           await UserRepository().save(user);
           Get.find<AuthStateController>().changeAuthState();
           await SharedPrefService().saveBoolData('isAuthorized', true);
-          DialogService().showSnackBarMessage('Информация', 'Регистрация прошла успешно');
           return ApiResponse(success: true, data: user.id);
         }
       }

@@ -90,7 +90,10 @@ class _ChangeEmailScreenState extends State<ChangeEmailScreen> {
                     onPressed: _loadingStateController.isLoadingState ? null : () async {
                       if (_keyFormState.currentState!.validate()) {
                         _loadingStateController.changeLoadingState();
-                        await ApiAccount().changeEmail(_emailController.text, _passwordController.text);
+                        final apiResponse = await ApiAccount().changeEmail(_emailController.text, _passwordController.text);
+                        if (apiResponse.success) {
+                          DialogService().showSnackBarMessage('Информация', 'Почта успешно изменена');
+                        }
                         _loadingStateController.changeLoadingState();
                       }
                     },
