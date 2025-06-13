@@ -13,7 +13,7 @@ class DialogAppInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Версия: 0.5.0-dev'),
+            Text('Версия: 0.9.0-beta.1'),
             SizedBox(height: 10),
             Text('Это приложение поможет вам исследовать музей колледжа, '
             'предоставляя информацию о экспозициях, экспонатах и событиях.'),
