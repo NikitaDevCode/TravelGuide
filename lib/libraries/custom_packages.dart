@@ -18,7 +18,6 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:bcrypt/bcrypt.dart';
 export 'package:elegant_notification/elegant_notification.dart';
 export 'package:encrypt/encrypt.dart' hide Key;
-export 'package:file_picker/file_picker.dart';
 export 'package:logger/logger.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:permission_handler/permission_handler.dart';
