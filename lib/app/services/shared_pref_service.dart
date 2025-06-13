@@ -5,7 +5,7 @@ class SharedPrefService {
   static final SharedPrefService _instance = SharedPrefService._internal();
   static SharedPreferences? _pref;
   factory SharedPrefService() => _instance;
-  static Future<void> initSharedPref() async {
+  static Future<void> initialize() async {
     _pref = await SharedPreferences.getInstance();
   }
   Future<bool> saveStringData(String key, String data) async {

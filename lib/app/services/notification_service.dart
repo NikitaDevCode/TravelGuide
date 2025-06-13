@@ -81,8 +81,7 @@ class NotificationService {
         android: AndroidNotificationDetails(
           'travel_guide_channel', 
           'Музейные уведомления',
-          importance: Importance.max,
-          playSound: true
+          importance: Importance.max
         )
       )
     );

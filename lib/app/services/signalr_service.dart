@@ -23,9 +23,9 @@ class SignalRService {
       _logger.i('Подключение прошло успешно');
     } 
     on Exception catch (_) {
-      debugPrint('Подключение не удалось');
+      _logger.e('Подключение не удалось');
       await Future.delayed(const Duration(seconds: 10));
-      debugPrint('Повторное подключение');
+      _logger.i('Повторное подключение');
       connect();
     }
   }

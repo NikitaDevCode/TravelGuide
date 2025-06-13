@@ -9,18 +9,18 @@ class AutoLogoutService {
     'http://109.191.50.234:5000/auth_hub', 
     null
   );
-  Future<void> initService() async {
+  Future<void> initialize() async {
     await _signalRService.connect();
     _signalRService.connection?.on('ReceiveLogout', (args) {
       final deviceId = args![0] as String;
       _onLogoutMessage(deviceId);
     });
-    _signalRService.connection?.on("ReceiveLogoutAll", (args) {
+    _signalRService.connection?.on('ReceiveLogoutAll', (args) {
       final userId = args![0] as String;
-      onLogoutAllMessage(userId);
+      _onLogoutAllMessage(userId);
     });
   }
-  void onLogoutAllMessage(String userId) async {
+  void _onLogoutAllMessage(String userId) async {
     final user = await UserRepository().get();
     if (user != null && user.id.toString() == userId) {
       _handleLogout();
