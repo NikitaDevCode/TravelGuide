@@ -1,7 +1,7 @@
 import '/libraries/services.dart';
 import '/libraries/controllers.dart';
 import '/libraries/custom_packages.dart';
-
+//Класс инициализирующий различные компоненты
 class AppInitialize {
   static void initializeControllers() {
     Get.put<AuthStateController>(AuthStateController());
